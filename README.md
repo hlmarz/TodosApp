@@ -91,8 +91,25 @@ npm install
 1. Buat atau buka proyek di [Firebase Console](https://console.firebase.google.com/).
 2. Buat database **Cloud Firestore**.
 3. Ambil konfigurasi aplikasi Firebase dari pengaturan proyek.
-4. Sesuaikan objek `firebaseConfig` di [`config.js`](./config.js) dengan konfigurasi proyek Anda.
+4. Sebelum menjalankan aplikasi, ganti semua nilai placeholder `xxxxx` pada objek `firebaseConfig` di [`config.js`](./config.js) dengan nilai konfigurasi Firebase milik Anda. Tanpa konfigurasi yang valid, aplikasi tidak dapat terhubung ke Firebase.
 5. Siapkan **Firestore Security Rules** yang sesuai untuk aplikasi. Aplikasi ini belum menggunakan autentikasi, jadi jangan gunakan aturan publik yang memberi semua orang akses baca dan tulis.
+
+Contoh konfigurasi yang perlu diisi pada `config.js`:
+
+```js
+const firebaseConfig = {
+  apiKey: "xxxxx",
+  authDomain: "xxxxx",
+  projectId: "xxxxx",
+  storageBucket: "xxxxx",
+  messagingSenderId: "xxxxx",
+  appId: "xxxxx"
+};
+```
+
+Ganti setiap `"xxxxx"` dengan nilai dari pengaturan aplikasi Firebase Anda. Jangan menyalin placeholder ini apa adanya karena koneksi Firebase tidak akan berfungsi.
+
+> **Catatan keamanan:** konfigurasi Firebase untuk aplikasi web/mobile (termasuk `apiKey`) bukan pengganti aturan keamanan database. Jangan masukkan kredensial privat seperti service account key ke aplikasi atau repository. Lindungi data dengan Firestore Security Rules dan, bila diperlukan, Firebase App Check.
 
 Koleksi `todos` akan dibuat otomatis saat todo pertama ditambahkan. Dokumennya memiliki field `heading` dan `createdAt`.
 
